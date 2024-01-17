@@ -10,6 +10,8 @@ import "./app.css";
 import { Stars } from "./Stars";
 import { Satellite } from "./Satellite";
 
+import { IconBrandGithub } from "@tabler/icons-react";
+
 function App() {
 	const [cameraFirstMoved, setCameraFirstMoved] = useState(false);
 	const [colorEditorIsOpen, setColorEditorIsOpen] = useState(false);
@@ -36,6 +38,16 @@ function App() {
 
 	return (
 		<>
+			<div className="gitLinkContainer">
+				<IconBrandGithub style={{ width: 20, height: 20 }} stroke={1.5} />
+				<a
+					href="https://github.com/craigjsmith/avatar-creator"
+					target="_blank"
+					className="gitLink"
+				>
+					Source code
+				</a>
+			</div>
 			<div className="canvas">
 				{colorEditorIsOpen ? (
 					<div className="colorPickerContainer">
