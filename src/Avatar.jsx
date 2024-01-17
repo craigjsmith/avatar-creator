@@ -3,6 +3,8 @@ import { Canvas, useFrame, useThree, useLoader } from "@react-three/fiber";
 import { BodyPart } from "./BodyPart";
 import { TextureLoader, SRGBColorSpace } from "three";
 
+import spaceTexture from "./assets/space.jpg";
+
 export function Avatar(props) {
 	let colors = props.colors;
 	let setColorEditorIsOpen = props.setColorEditorIsOpen;
@@ -20,7 +22,7 @@ export function Avatar(props) {
 	});
 
 	const { scene } = useThree();
-	const texture = useLoader(TextureLoader, "../space.jpg");
+	const texture = useLoader(TextureLoader, spaceTexture);
 	texture.colorSpace = SRGBColorSpace;
 	scene.background = texture;
 

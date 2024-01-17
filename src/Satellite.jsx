@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { TextureLoader } from "three";
 import { useFrame, useLoader } from "@react-three/fiber";
 
+import jupiterTexture from "./assets/jupiter.jpg";
+
 export function Satellite(props) {
 	const radius = 25;
 
@@ -11,7 +13,7 @@ export function Satellite(props) {
 	const [z, setZ] = useState(radius * Math.sin(angle));
 	const ref = useRef();
 
-	const map = useLoader(TextureLoader, "./jupiter.jpg");
+	const map = useLoader(TextureLoader, jupiterTexture);
 
 	// Spin
 	useFrame((state, delta) => {
