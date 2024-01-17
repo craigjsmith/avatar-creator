@@ -1,6 +1,6 @@
 # Avatar Creator
 
-A super simple 3D avatar creator.
+A super simple 3D avatar creator. I made this to familiarize myself with Three.js.
 
 ## Stack
 
