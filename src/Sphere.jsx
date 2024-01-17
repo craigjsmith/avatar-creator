@@ -1,4 +1,4 @@
-export function Box(props) {
+export function Sphere(props) {
 	return (
 		<mesh
 			position={props.position}
@@ -8,7 +8,7 @@ export function Box(props) {
 				props.setColorEditorIsOpen(true);
 			}}
 		>
-			<boxGeometry args={props.size} />
+			<sphereGeometry args={props.size} />
 			<meshStandardMaterial color={props.color} />
 		</mesh>
 	);

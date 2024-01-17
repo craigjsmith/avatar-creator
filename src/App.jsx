@@ -1,32 +1,50 @@
 import { createRoot } from "react-dom/client";
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { ColorPicker } from "@mantine/core";
+import { ColorPicker, Button } from "@mantine/core";
 import { Avatar } from "./Avatar";
 
 import "./app.css";
 
 function App() {
 	const [colorEditorIsOpen, setColorEditorIsOpen] = useState(false);
-	const [selectedMeshId, setSelectedMeshId] = useState(0);
-	const [color, setColor] = useState(0xff00ff);
-	const [color2, setColor2] = useState(0xff00ff);
+	const [selectedMeshId, setSelectedMeshId] = useState();
+	const [colors, setColors] = useState({
+		armLeft: 0xff0000,
+		armRight: 0x00ff00,
+		legLeft: 0x0000ff,
+		legRight: 0xffff00,
+		body: 0xff00ff,
+		head: 0x00ffff,
+	});
 
 	return (
 		<>
 			<div className="canvas">
-				<ColorPicker
-					format="rgba"
-					value={selectedMeshId === 0 ? color : color2}
-					onChange={(e) => {
-						console.log(selectedMeshId);
-						if (selectedMeshId == 0) {
-							setColor(e);
-						} else {
-							setColor2(e);
-						}
-					}}
-				/>
+				{colorEditorIsOpen ? (
+					<div className="colorPickerContainer">
+						<div className="colorPicker">
+							<ColorPicker
+								format="rgba"
+								value={colors[selectedMeshId]}
+								onChange={(e) => {
+									let newColors = { ...colors };
+									newColors[selectedMeshId] = e;
+									setColors(newColors);
+								}}
+							/>
+							<Button
+								variant="filled"
+								onClick={() => {
+									setColorEditorIsOpen(false);
+								}}
+								className="colorPickerCloseButton"
+							>
+								Close
+							</Button>
+						</div>
+					</div>
+				) : undefined}
 
 				<Canvas>
 					<ambientLight intensity={Math.PI / 2} />
@@ -43,8 +61,7 @@ function App() {
 						intensity={Math.PI}
 					/>
 					<Avatar
-						color={color}
-						color2={color2}
+						colors={colors}
 						setColorEditorIsOpen={setColorEditorIsOpen}
 						setSelectedMeshId={setSelectedMeshId}
 					/>

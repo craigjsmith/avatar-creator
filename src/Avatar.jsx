@@ -1,27 +1,77 @@
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Box } from "./box";
+import { Sphere } from "./Sphere";
 
 export function Avatar(props) {
-	let color1 = props.color;
-	let color2 = props.color2;
+	let colors = props.colors;
 	let setColorEditorIsOpen = props.setColorEditorIsOpen;
 	let setSelectedMeshId = props.setSelectedMeshId;
 
+	const [hover, setHover] = useState(false);
+
+	const ref = useRef();
+
+	useFrame((state, delta) => {
+		if (!hover) {
+			ref.current.rotation.y += delta;
+		}
+	});
+
 	return (
-		<>
+		<mesh
+			ref={ref}
+			onPointerOver={() => setHover(true)}
+			onPointerOut={() => setHover(false)}
+		>
 			<Box
-				id={0}
-				position={[-1.2, 0, 0]}
-				color={color1}
+				id={"armLeft"}
+				position={[0.75, 0, 0]}
+				size={[0.25, 1.5, 0.25]}
+				color={colors.armLeft}
 				setSelectedMeshId={setSelectedMeshId}
+				setColorEditorIsOpen={setColorEditorIsOpen}
 			/>
 			<Box
-				id={1}
-				position={[1.2, 0, 0]}
-				color={color2}
+				id={"armRight"}
+				position={[-0.75, 0, 0]}
+				size={[0.25, 1.5, 0.25]}
+				color={colors.armRight}
 				setSelectedMeshId={setSelectedMeshId}
+				setColorEditorIsOpen={setColorEditorIsOpen}
 			/>
-		</>
+			<Box
+				id={"legLeft"}
+				position={[0.25, -1.5, 0]}
+				size={[0.25, 1.5, 0.25]}
+				color={colors.legLeft}
+				setSelectedMeshId={setSelectedMeshId}
+				setColorEditorIsOpen={setColorEditorIsOpen}
+			/>
+			<Box
+				id={"legRight"}
+				position={[-0.25, -1.5, 0]}
+				size={[0.25, 1.5, 0.25]}
+				color={colors.legRight}
+				setSelectedMeshId={setSelectedMeshId}
+				setColorEditorIsOpen={setColorEditorIsOpen}
+			/>
+			<Box
+				id={"body"}
+				position={[0, 0, 0]}
+				size={[1, 1.5, 1]}
+				color={colors.body}
+				setSelectedMeshId={setSelectedMeshId}
+				setColorEditorIsOpen={setColorEditorIsOpen}
+			/>
+			<Sphere
+				id={"head"}
+				position={[0, 1.4, 0]}
+				size={[0.5, 32, 16]}
+				color={colors.head}
+				setSelectedMeshId={setSelectedMeshId}
+				setColorEditorIsOpen={setColorEditorIsOpen}
+			/>
+		</mesh>
 	);
 }

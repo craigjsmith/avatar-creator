@@ -6,3 +6,21 @@ body {
 	background-color: black;
 	height: 100vh;
 }
+
+.colorPickerContainer {
+	position: absolute;
+	z-index: 10;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	margin-left: 25px;
+}
+
+.colorPicker {
+	display: flex;
+	flex-direction: column;
+}
+
+.colorPickerCloseButton {
+	margin-top: 10px;
+}
