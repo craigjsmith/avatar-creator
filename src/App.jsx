@@ -10,12 +10,12 @@ function App() {
 	const [colorEditorIsOpen, setColorEditorIsOpen] = useState(false);
 	const [selectedMeshId, setSelectedMeshId] = useState();
 	const [colors, setColors] = useState({
-		armLeft: "#ff0000",
+		armLeft: "#00ff00",
 		armRight: "#00ff00",
-		legLeft: "#0000ff",
-		legRight: "#ffff00",
-		body: "#ff00ff",
-		head: "#00ffff",
+		legLeft: "#ff0000",
+		legRight: "#ff0000",
+		body: "#0000ff",
+		head: "#ffff00",
 	});
 
 	return (
