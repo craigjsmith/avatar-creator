@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree, useLoader } from "@react-three/fiber";
 import { Box } from "./box";
 import { Sphere } from "./Sphere";
+import { TextureLoader, SRGBColorSpace } from "three";
 
 export function Avatar(props) {
 	let colors = props.colors;
@@ -12,11 +13,17 @@ export function Avatar(props) {
 
 	const ref = useRef();
 
+	// Spin
 	useFrame((state, delta) => {
-		if (!hover) {
-			ref.current.rotation.y += delta;
-		}
+		// if (!hover) {
+		// 	ref.current.rotation.y += delta;
+		// }
 	});
+
+	const { scene } = useThree();
+	const texture = useLoader(TextureLoader, "../space.jpg");
+	texture.colorSpace = SRGBColorSpace;
+	scene.background = texture;
 
 	return (
 		<mesh

@@ -1,10 +1,14 @@
 import { createRoot } from "react-dom/client";
-import { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import { ColorPicker, Button } from "@mantine/core";
 import { Avatar } from "./Avatar";
+import { TextureLoader } from "three";
 
 import "./app.css";
+import { Stars } from "./Stars";
+import { Satellite } from "./Satellite";
 
 function App() {
 	const [colorEditorIsOpen, setColorEditorIsOpen] = useState(false);
@@ -17,6 +21,8 @@ function App() {
 		body: "#0000ff",
 		head: "#ffff00",
 	});
+
+	const [stars, _setStars] = useState(<Stars />);
 
 	return (
 		<>
@@ -47,6 +53,8 @@ function App() {
 
 				<Canvas>
 					<ambientLight intensity={Math.PI / 2} />
+					<OrbitControls />
+					{/* <gridHelper /> */}
 					<spotLight
 						position={[10, 10, 10]}
 						angle={0.15}
@@ -64,6 +72,8 @@ function App() {
 						setColorEditorIsOpen={setColorEditorIsOpen}
 						setSelectedMeshId={setSelectedMeshId}
 					/>
+					<Satellite />
+					{stars}
 				</Canvas>
 			</div>
 		</>
