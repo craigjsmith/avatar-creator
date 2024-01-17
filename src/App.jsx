@@ -10,12 +10,12 @@ function App() {
 	const [colorEditorIsOpen, setColorEditorIsOpen] = useState(false);
 	const [selectedMeshId, setSelectedMeshId] = useState();
 	const [colors, setColors] = useState({
-		armLeft: 0xff0000,
-		armRight: 0x00ff00,
-		legLeft: 0x0000ff,
-		legRight: 0xffff00,
-		body: 0xff00ff,
-		head: 0x00ffff,
+		armLeft: "#ff0000",
+		armRight: "#00ff00",
+		legLeft: "#0000ff",
+		legRight: "#ffff00",
+		body: "#ff00ff",
+		head: "#00ffff",
 	});
 
 	return (
@@ -25,7 +25,6 @@ function App() {
 					<div className="colorPickerContainer">
 						<div className="colorPicker">
 							<ColorPicker
-								format="rgba"
 								value={colors[selectedMeshId]}
 								onChange={(e) => {
 									let newColors = { ...colors };
