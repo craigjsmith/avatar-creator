@@ -1,6 +1,7 @@
 # Avatar Creator
 
 A super simple 3D avatar creator. I made this to familiarize myself with Three.js.
+https://three.craigsmith.dev/
 
 ## Stack
 
