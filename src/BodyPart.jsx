@@ -1,14 +1,18 @@
-export function Box(props) {
+export function BodyPart(props) {
 	return (
 		<mesh
 			position={props.position}
 			onClick={() => {
-				console.log("click!");
 				props.setSelectedMeshId(props.id);
 				props.setColorEditorIsOpen(true);
 			}}
 		>
-			<boxGeometry args={props.size} />
+			{props.shape === "sphere" ? (
+				<sphereGeometry args={props.size} />
+			) : (
+				<boxGeometry args={props.size} />
+			)}
+
 			<meshStandardMaterial color={props.color} />
 		</mesh>
 	);

@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { Canvas, useFrame, useThree, useLoader } from "@react-three/fiber";
-import { Box } from "./box";
-import { Sphere } from "./Sphere";
+import { BodyPart } from "./BodyPart";
 import { TextureLoader, SRGBColorSpace } from "three";
 
 export function Avatar(props) {
@@ -33,7 +32,7 @@ export function Avatar(props) {
 			}}
 			onPointerOut={() => setHover(false)}
 		>
-			<Box
+			<BodyPart
 				id={"armLeft"}
 				position={[0.75, 0, 0]}
 				size={[0.25, 1.5, 0.25]}
@@ -41,7 +40,7 @@ export function Avatar(props) {
 				setSelectedMeshId={setSelectedMeshId}
 				setColorEditorIsOpen={setColorEditorIsOpen}
 			/>
-			<Box
+			<BodyPart
 				id={"armRight"}
 				position={[-0.75, 0, 0]}
 				size={[0.25, 1.5, 0.25]}
@@ -49,7 +48,7 @@ export function Avatar(props) {
 				setSelectedMeshId={setSelectedMeshId}
 				setColorEditorIsOpen={setColorEditorIsOpen}
 			/>
-			<Box
+			<BodyPart
 				id={"legLeft"}
 				position={[0.25, -1.5, 0]}
 				size={[0.25, 1.5, 0.25]}
@@ -57,7 +56,7 @@ export function Avatar(props) {
 				setSelectedMeshId={setSelectedMeshId}
 				setColorEditorIsOpen={setColorEditorIsOpen}
 			/>
-			<Box
+			<BodyPart
 				id={"legRight"}
 				position={[-0.25, -1.5, 0]}
 				size={[0.25, 1.5, 0.25]}
@@ -65,7 +64,7 @@ export function Avatar(props) {
 				setSelectedMeshId={setSelectedMeshId}
 				setColorEditorIsOpen={setColorEditorIsOpen}
 			/>
-			<Box
+			<BodyPart
 				id={"body"}
 				position={[0, 0, 0]}
 				size={[1, 1.5, 1]}
@@ -73,7 +72,8 @@ export function Avatar(props) {
 				setSelectedMeshId={setSelectedMeshId}
 				setColorEditorIsOpen={setColorEditorIsOpen}
 			/>
-			<Sphere
+			<BodyPart
+				shape={"sphere"}
 				id={"head"}
 				position={[0, 1.4, 0]}
 				size={[0.5, 32, 16]}
