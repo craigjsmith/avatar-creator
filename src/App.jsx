@@ -11,6 +11,7 @@ import { Stars } from "./Stars";
 import { Satellite } from "./Satellite";
 
 function App() {
+	const [cameraFirstMoved, setCameraFirstMoved] = useState(false);
 	const [colorEditorIsOpen, setColorEditorIsOpen] = useState(false);
 	const [selectedMeshId, setSelectedMeshId] = useState();
 	const [colors, setColors] = useState({
@@ -22,6 +23,15 @@ function App() {
 		head: "#ffff00",
 	});
 
+	let partsReadableNames = {
+		armLeft: "Left Arm",
+		armRight: "Right Arm",
+		legLeft: "Left Leg",
+		legRight: "Right Leg",
+		body: "Body",
+		head: "Head",
+	};
+
 	const [stars, _setStars] = useState(<Stars />);
 
 	return (
@@ -30,6 +40,7 @@ function App() {
 				{colorEditorIsOpen ? (
 					<div className="colorPickerContainer">
 						<div className="colorPicker">
+							<h1>{`Edit ${partsReadableNames[selectedMeshId]}`}</h1>
 							<ColorPicker
 								value={colors[selectedMeshId]}
 								onChange={(e) => {
@@ -49,11 +60,21 @@ function App() {
 							</Button>
 						</div>
 					</div>
-				) : undefined}
+				) : (
+					<div className="messageContainer">
+						{!cameraFirstMoved
+							? "Drag the mouse to move camera"
+							: "Click on a body part to customize"}
+					</div>
+				)}
 
 				<Canvas>
 					<ambientLight intensity={Math.PI / 2} />
-					<OrbitControls />
+					<OrbitControls
+						onChange={() => {
+							setCameraFirstMoved(true);
+						}}
+					/>
 					{/* <gridHelper /> */}
 					<spotLight
 						position={[10, 10, 10]}

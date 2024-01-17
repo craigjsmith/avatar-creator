@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	overflow: hidden;
 }
 
 .canvas {
@@ -23,4 +24,22 @@ body {
 
 .colorPickerCloseButton {
 	margin-top: 10px;
+}
+
+.colorPicker h1 {
+	text-align: center;
+	color: white;
+	margin-bottom: 5px;
+}
+
+.messageContainer {
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-left: 25px;
+	color: white;
+	margin-top: 15px;
+	font-size: 24pt;
 }

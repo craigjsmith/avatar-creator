@@ -28,7 +28,9 @@ export function Avatar(props) {
 	return (
 		<mesh
 			ref={ref}
-			onPointerOver={() => setHover(true)}
+			onPointerOver={() => {
+				setHover(true);
+			}}
 			onPointerOut={() => setHover(false)}
 		>
 			<Box
